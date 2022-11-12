@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ivParameterIcon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvParameterTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/grey"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/ivParameterIcon"
+            app:layout_constraintStart_toEndOf="@id/ivParameterIcon"
+            app:layout_constraintTop_toTopOf="@id/ivParameterIcon" />
+
+        <TextView
+            android:id="@+id/tvMorningTitle"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="@string/morning_title"
+            android:textColor="@color/grey"
+            app:layout_constraintEnd_toStartOf="@+id/tvDayTitle"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivParameterIcon" />
+
+        <TextView
+            android:id="@+id/tvMorningValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/tvMorningTitle"
+            app:layout_constraintStart_toStartOf="@id/tvMorningTitle"
+            app:layout_constraintTop_toBottomOf="@id/tvMorningTitle" />
+
+        <TextView
+            android:id="@+id/tvDayTitle"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="@string/day_title"
+            android:textColor="@color/grey"
+            app:layout_constraintEnd_toStartOf="@+id/tvEveningTitle"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tvMorningTitle"
+            app:layout_constraintTop_toBottomOf="@id/ivParameterIcon" />
+
+        <TextView
+            android:id="@+id/tvDayValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/tvDayTitle"
+            app:layout_constraintStart_toStartOf="@id/tvDayTitle"
+            app:layout_constraintTop_toBottomOf="@id/tvDayTitle" />
+
+        <TextView
+            android:id="@+id/tvEveningTitle"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="@string/evening_title"
+            android:textColor="@color/grey"
+            app:layout_constraintEnd_toStartOf="@+id/tvNightTitle"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tvDayTitle"
+            app:layout_constraintTop_toBottomOf="@id/ivParameterIcon" />
+
+        <TextView
+            android:id="@+id/tvEveningValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/tvEveningTitle"
+            app:layout_constraintStart_toStartOf="@id/tvEveningTitle"
+            app:layout_constraintTop_toBottomOf="@id/tvEveningTitle" />
+
+        <TextView
+            android:id="@+id/tvNightTitle"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="@string/night_title"
+            android:textColor="@color/grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tvEveningTitle"
+            app:layout_constraintTop_toBottomOf="@id/ivParameterIcon" />
+
+        <TextView
+            android:id="@+id/tvNightValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/tvNightTitle"
+            app:layout_constraintStart_toStartOf="@id/tvNightTitle"
+            app:layout_constraintTop_toBottomOf="@id/tvNightTitle" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
