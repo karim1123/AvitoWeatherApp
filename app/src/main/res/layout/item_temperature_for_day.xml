@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvMorningTitle"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="@string/morning_title"
+            android:textColor="@color/grey"
+            app:layout_constraintEnd_toStartOf="@+id/tvDayTitle"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivMorningWeather"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="@id/tvMorningTitle"
+            app:layout_constraintStart_toStartOf="@id/tvMorningTitle"
+            app:layout_constraintTop_toBottomOf="@id/tvMorningTitle" />
+
+        <TextView
+            android:id="@+id/tvMorningValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="@id/tvMorningTitle"
+            app:layout_constraintStart_toStartOf="@id/tvMorningTitle"
+            app:layout_constraintTop_toBottomOf="@id/ivMorningWeather" />
+
+        <TextView
+            android:id="@+id/tvMorningFellsTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/grey"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/tvMorningTitle"
+            app:layout_constraintStart_toStartOf="@id/tvMorningTitle"
+            app:layout_constraintTop_toBottomOf="@id/tvFeelsLikeTitle" />
+
+        <TextView
+            android:id="@+id/tvDayTitle"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="@string/day_title"
+            android:textColor="@color/grey"
+            app:layout_constraintEnd_toStartOf="@+id/tvEveningTitle"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tvMorningTitle"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivDayWeather"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="@id/tvDayTitle"
+            app:layout_constraintStart_toStartOf="@id/tvDayTitle"
+            app:layout_constraintTop_toBottomOf="@id/tvDayTitle" />
+
+        <TextView
+            android:id="@+id/tvDayValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="@id/tvDayTitle"
+            app:layout_constraintStart_toStartOf="@id/tvDayTitle"
+            app:layout_constraintTop_toBottomOf="@id/ivDayWeather" />
+
+        <TextView
+            android:id="@+id/tvDayFeelsTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/grey"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/tvDayTitle"
+            app:layout_constraintStart_toStartOf="@id/tvDayTitle"
+            app:layout_constraintTop_toBottomOf="@id/tvFeelsLikeTitle" />
+
+        <TextView
+            android:id="@+id/tvEveningTitle"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="@string/evening_title"
+            android:textColor="@color/grey"
+            app:layout_constraintEnd_toStartOf="@+id/tvNightTitle"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tvDayTitle"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivEveningWeather"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="@id/tvEveningTitle"
+            app:layout_constraintStart_toStartOf="@id/tvEveningTitle"
+            app:layout_constraintTop_toBottomOf="@id/tvEveningTitle" />
+
+        <TextView
+            android:id="@+id/tvEveningValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="@id/tvEveningTitle"
+            app:layout_constraintStart_toStartOf="@id/tvEveningTitle"
+            app:layout_constraintTop_toBottomOf="@id/ivEveningWeather" />
+
+        <TextView
+            android:id="@+id/tvEveningFeelsTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/grey"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/tvEveningTitle"
+            app:layout_constraintStart_toStartOf="@id/tvEveningTitle"
+            app:layout_constraintTop_toBottomOf="@id/tvFeelsLikeTitle" />
+
+        <TextView
+            android:id="@+id/tvNightTitle"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="@string/night_title"
+            android:textColor="@color/grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tvEveningTitle"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivNightWeather"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="@id/tvNightTitle"
+            app:layout_constraintStart_toStartOf="@id/tvNightTitle"
+            app:layout_constraintTop_toBottomOf="@id/tvNightTitle" />
+
+        <TextView
+            android:id="@+id/tvNightValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="@id/tvNightTitle"
+            app:layout_constraintStart_toStartOf="@id/tvNightTitle"
+            app:layout_constraintTop_toBottomOf="@id/ivNightWeather" />
+
+        <TextView
+            android:id="@+id/tvNightFellsTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/grey"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/tvNightTitle"
+            app:layout_constraintStart_toStartOf="@id/tvNightTitle"
+            app:layout_constraintTop_toBottomOf="@id/tvFeelsLikeTitle" />
+
+        <TextView
+            android:id="@+id/tvFeelsLikeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/feels_like_title"
+            android:textColor="@color/grey"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvMorningValue" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</com.google.android.material.card.MaterialCardView>
