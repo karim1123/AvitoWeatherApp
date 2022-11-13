@@ -9,8 +9,8 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.karim.gabbasov.avitoweatherapp.R
-import com.karim.gabbasov.avitoweatherapp.data.util.DownloadImageUtil
-import com.karim.gabbasov.avitoweatherapp.data.util.InternetLinks
+import com.karim.gabbasov.avitoweatherapp.todayweather.data.util.DownloadImageUtil
+import com.karim.gabbasov.avitoweatherapp.todayweather.data.util.InternetLinks
 import com.karim.gabbasov.avitoweatherapp.weekforecast.domain.WeatherForecastForDayByDayPartsModel
 
 const val INVALID_VIEW = "Invalid view type"

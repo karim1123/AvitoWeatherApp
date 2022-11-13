@@ -1,7 +1,7 @@
 package com.karim.gabbasov.avitoweatherapp.di
 
-import com.karim.gabbasov.avitoweatherapp.data.location.LocationTrackerImpl
-import com.karim.gabbasov.avitoweatherapp.domain.location.LocationTracker
+import com.karim.gabbasov.avitoweatherapp.todayweather.data.location.LocationTrackerImpl
+import com.karim.gabbasov.avitoweatherapp.todayweather.domain.location.LocationTracker
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

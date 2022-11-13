@@ -1,8 +1,8 @@
 package com.karim.gabbasov.avitoweatherapp.weekforecast.util
 
 import com.karim.gabbasov.avitoweatherapp.R
-import com.karim.gabbasov.avitoweatherapp.domain.weather.WeatherForDayPartModel
-import com.karim.gabbasov.avitoweatherapp.domain.weather.WeatherForWeekModel
+import com.karim.gabbasov.avitoweatherapp.todayweather.domain.model.WeatherForDayPartModel
+import com.karim.gabbasov.avitoweatherapp.todayweather.domain.model.WeatherForWeekModel
 import com.karim.gabbasov.avitoweatherapp.weekforecast.domain.WeatherForecastForDayByDayPartsModel
 
 /**

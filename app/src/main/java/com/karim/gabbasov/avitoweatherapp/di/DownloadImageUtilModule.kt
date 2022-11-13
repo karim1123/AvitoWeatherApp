@@ -1,7 +1,7 @@
 package com.karim.gabbasov.avitoweatherapp.di
 
-import com.karim.gabbasov.avitoweatherapp.data.util.DownloadImageUtil
-import com.karim.gabbasov.avitoweatherapp.data.util.DownloadImageUtilImpl
+import com.karim.gabbasov.avitoweatherapp.todayweather.data.util.DownloadImageUtil
+import com.karim.gabbasov.avitoweatherapp.todayweather.data.util.DownloadImageUtilImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

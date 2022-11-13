@@ -6,8 +6,9 @@ import coil.ImageLoader
 import coil.decode.SvgDecoder
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import com.karim.gabbasov.avitoweatherapp.data.remote.WeatherApi
-import com.karim.gabbasov.avitoweatherapp.data.util.InternetLinks
+import com.karim.gabbasov.avitoweatherapp.todayweather.data.remote.WeatherApi
+import com.karim.gabbasov.avitoweatherapp.todayweather.data.util.InternetLinks
+import com.karim.gabbasov.avitoweatherapp.location.data.remote.LocationApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -33,7 +34,7 @@ object AppModule {
     @Singleton
     fun provideWeatherApi(): WeatherApi {
         return Retrofit.Builder()
-            .baseUrl(InternetLinks.BASE_URL.link)
+            .baseUrl(InternetLinks.BASE_WEATHER_URL.link)
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
             .create()
@@ -67,4 +68,14 @@ object AppModule {
     @Provides
     @Singleton
     fun provideDispatcher() = Dispatchers.IO
+
+    @Provides
+    @Singleton
+    fun provideLocationApi(): LocationApi {
+        return Retrofit.Builder()
+            .baseUrl(InternetLinks.BASE_LOCATION_URL.link)
+            .addConverterFactory(MoshiConverterFactory.create())
+            .build()
+            .create()
+    }
 }

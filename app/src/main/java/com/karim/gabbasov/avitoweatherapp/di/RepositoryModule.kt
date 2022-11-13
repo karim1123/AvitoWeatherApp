@@ -1,7 +1,7 @@
 package com.karim.gabbasov.avitoweatherapp.di
 
-import com.karim.gabbasov.avitoweatherapp.data.repository.WeatherRepositoryImpl
-import com.karim.gabbasov.avitoweatherapp.domain.repository.WeatherRepository
+import com.karim.gabbasov.avitoweatherapp.todayweather.data.repository.WeatherRepositoryImpl
+import com.karim.gabbasov.avitoweatherapp.todayweather.domain.repository.WeatherRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

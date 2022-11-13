@@ -12,9 +12,9 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.tabs.TabLayoutMediator
 import com.karim.gabbasov.avitoweatherapp.databinding.FragmentWeekForecastContainerBinding
-import com.karim.gabbasov.avitoweatherapp.domain.weather.WeatherInfoModel
-import com.karim.gabbasov.avitoweatherapp.presentation.TodayWeatherViewModel
-import com.karim.gabbasov.avitoweatherapp.presentation.WeatherState
+import com.karim.gabbasov.avitoweatherapp.todayweather.domain.model.WeatherInfoModel
+import com.karim.gabbasov.avitoweatherapp.todayweather.presentation.TodayWeatherViewModel
+import com.karim.gabbasov.avitoweatherapp.todayweather.presentation.WeatherState
 import kotlinx.coroutines.launch
 
 /**

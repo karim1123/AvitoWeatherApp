@@ -7,12 +7,20 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.karim.gabbasov.avitoweatherapp.presentation.TodayWeatherFragment"
+        android:name="com.karim.gabbasov.avitoweatherapp.todayweather.presentation.TodayWeatherFragment"
         android:label="@string/app_name"
         tools:layout="@layout/fragment_today_weather">
         <action
             android:id="@+id/action_FirstFragment_to_weekForecastContainerFragment"
             app:destination="@id/weekForecastContainerFragment" />
+        <action
+            android:id="@+id/action_FirstFragment_to_favoritesFragment"
+            app:destination="@id/favoritesFragment" />
+        <argument
+            android:name="coordinates"
+            app:argType="com.karim.gabbasov.avitoweatherapp.todayweather.domain.model.CoordinatesModel"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
 
     <fragment
@@ -23,6 +31,16 @@
         <argument
             android:name="dayIndex"
             app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.karim.gabbasov.avitoweatherapp.location.presentation.FavoritesFragment"
+        android:label="@string/favorites_title"
+        tools:layout="@layout/fragment_favorities" >
+        <action
+            android:id="@+id/action_favoritesFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
     </fragment>
 
 </navigation>
