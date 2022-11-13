@@ -8,7 +8,7 @@
     android:scrollbars="none"
     android:layout_marginBottom="10dp"
     android:orientation="horizontal"
-    tools:context=".presentation.TodayWeatherFragment">
+    tools:context=".todayweather.presentation.TodayWeatherFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/todayWeatherLayout"

@@ -9,11 +9,11 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.karim.gabbasov.avitoweatherapp.data.util.DownloadImageUtil
+import com.karim.gabbasov.avitoweatherapp.todayweather.data.util.DownloadImageUtil
 import com.karim.gabbasov.avitoweatherapp.databinding.FragmentWeekForecastBinding
-import com.karim.gabbasov.avitoweatherapp.domain.weather.WeatherInfoModel
-import com.karim.gabbasov.avitoweatherapp.presentation.TodayWeatherViewModel
-import com.karim.gabbasov.avitoweatherapp.presentation.WeatherState
+import com.karim.gabbasov.avitoweatherapp.todayweather.domain.model.WeatherInfoModel
+import com.karim.gabbasov.avitoweatherapp.todayweather.presentation.TodayWeatherViewModel
+import com.karim.gabbasov.avitoweatherapp.todayweather.presentation.WeatherState
 import com.karim.gabbasov.avitoweatherapp.weekforecast.presentation.recycler.WeekForecastAdapter
 import com.karim.gabbasov.avitoweatherapp.weekforecast.util.WeekForecastMapper.toWeatherForecastByDayParts
 import dagger.hilt.android.AndroidEntryPoint
