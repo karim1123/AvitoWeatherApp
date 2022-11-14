@@ -8,7 +8,6 @@ import com.karim.gabbasov.avitoweatherapp.todayweather.data.util.CalendarUtil.un
 import com.karim.gabbasov.avitoweatherapp.todayweather.data.util.CalendarUtil.unixTimeToHours
 import com.karim.gabbasov.avitoweatherapp.todayweather.data.util.CalendarUtil.unixTimeToTomorrowDate
 import com.karim.gabbasov.avitoweatherapp.todayweather.data.util.HOURS_IN_A_DAY
-import com.karim.gabbasov.avitoweatherapp.todayweather.data.util.NamesOfDayOfWeek
 import com.karim.gabbasov.avitoweatherapp.todayweather.data.util.NamesOfDayOfWeek.Companion.toDayOfWeekName
 import com.karim.gabbasov.avitoweatherapp.todayweather.data.util.NamesOfMonths.Companion.toMonthName
 import com.karim.gabbasov.avitoweatherapp.todayweather.domain.model.LocationModel
@@ -169,7 +168,6 @@ object WeatherMappers {
                 )
             )
         }
-        dayForecast[0].dayOfWeek = NamesOfDayOfWeek.Today.name
         return WeatherForWeekModel(
             morningWeather = morningForecast,
             dayWeather = dayForecast,

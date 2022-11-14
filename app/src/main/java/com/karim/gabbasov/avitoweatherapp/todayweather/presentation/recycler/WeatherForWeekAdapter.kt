@@ -3,103 +3,161 @@ package com.karim.gabbasov.avitoweatherapp.todayweather.presentation.recycler
 import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.karim.gabbasov.avitoweatherapp.R
 import com.karim.gabbasov.avitoweatherapp.todayweather.data.util.DownloadImageUtil
 import com.karim.gabbasov.avitoweatherapp.todayweather.data.util.InternetLinks
-import com.karim.gabbasov.avitoweatherapp.todayweather.data.util.NamesOfDayOfWeek
-import com.karim.gabbasov.avitoweatherapp.databinding.ItemWeatherForDayBinding
-import com.karim.gabbasov.avitoweatherapp.todayweather.domain.model.WeatherForDayPartModel
-
-const val RED_COLOR = "#CD4040"
+import com.karim.gabbasov.avitoweatherapp.todayweather.domain.model.WeekWeatherRecyclerModel
 
 /**
  * Adapter for use displaying the weather forecast by days.
  */
 class WeatherForWeekAdapter(
-    private val forecastForWeek: List<WeatherForDayPartModel>,
+    private val forecastForWeek: List<WeekWeatherRecyclerModel>,
     private val downloadImageUtil: DownloadImageUtil,
-    private val onClick: (WeatherForDayPartModel) -> Unit
+    private val onClick: (Int) -> Unit
 ) :
     RecyclerView.Adapter<WeatherForWeekAdapter.WeatherForWeekViewHolder>() {
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherForWeekViewHolder {
+        val layout = when (viewType) {
+            TYPE_TITLE_ITEM -> R.layout.item_weather_for_day_with_title
+            TYPE_WEEKEND_ITEM -> R.layout.item_weather_for_day
+            TYPE_WEEKDAY_ITEM -> R.layout.item_weather_for_day
+            else -> throw IllegalArgumentException(INVALID_VIEW)
+        }
+        val view = LayoutInflater
+            .from(parent.context)
+            .inflate(layout, parent, false)
+        return WeatherForWeekViewHolder(parent.context, view)
+    }
+
+    override fun onBindViewHolder(holder: WeatherForWeekViewHolder, position: Int) {
+        holder.bind(forecastForWeek[position])
+    }
+
+    override fun getItemCount(): Int = forecastForWeek.size
+
+    override fun getItemViewType(position: Int): Int {
+        return when (forecastForWeek[position]) {
+            is WeekWeatherRecyclerModel.TitleItem -> TYPE_TITLE_ITEM
+            is WeekWeatherRecyclerModel.WeekendItem -> TYPE_WEEKEND_ITEM
+            else -> TYPE_WEEKDAY_ITEM
+        }
+    }
+
+    companion object {
+        private const val TYPE_TITLE_ITEM = 0
+        private const val TYPE_WEEKEND_ITEM = 1
+        private const val TYPE_WEEKDAY_ITEM = 2
+    }
+
     inner class WeatherForWeekViewHolder(
-        binding: ItemWeatherForDayBinding,
         val context: Context,
-        val onClick: (WeatherForDayPartModel) -> Unit
-    ) :
-        RecyclerView.ViewHolder(binding.root) {
-        private val date = binding.tvDate
-        private val dayOfWeek = binding.tvDayOfWeek
-        private val weatherIcon = binding.ivWeather
-        private val maxTemperature = binding.tvMaxTemp
-        private val minTemperature = binding.tvMinTemp
-        private var currentWeatherForDayPartModel: WeatherForDayPartModel? = null
+        itemView: View
+    ) : RecyclerView.ViewHolder(itemView) {
+        private var currentIndex: Int? = null
 
         init {
             itemView.setOnClickListener {
-                currentWeatherForDayPartModel?.let {
+                currentIndex?.let {
                     onClick(it)
                 }
             }
         }
 
-        fun bind(dayForecast: WeatherForDayPartModel) {
-            currentWeatherForDayPartModel = dayForecast
-            date.text = dayForecast.date
-            if (
-                dayForecast.dayOfWeek == NamesOfDayOfWeek.Sunday.name ||
-                dayForecast.dayOfWeek == NamesOfDayOfWeek.Saturday.name
-            ) {
-                dayOfWeek.setTextColor(Color.parseColor(RED_COLOR))
-            }
-            dayOfWeek.text = dayForecast.dayOfWeek
-
-            if (dayForecast.dayOfWeek == NamesOfDayOfWeek.Today.name) {
-                maxTemperature.text =
-                    context.getString(
-                        R.string.temperature_in_Celsius_with_Max_title,
-                        dayForecast.maxTemperature
-                    )
-                minTemperature.text =
-                    context.getString(
-                        R.string.temperature_in_Celsius_with_MIn_title,
-                        dayForecast.minTemperature
-                    )
-            } else {
-                maxTemperature.text =
-                    context.getString(R.string.temperature_in_Celsius, dayForecast.maxTemperature)
-                minTemperature.text =
-                    context.getString(R.string.temperature_in_Celsius, dayForecast.minTemperature)
-            }
+        private fun bindTitleItem(item: WeekWeatherRecyclerModel.TitleItem) {
+            currentIndex = item.index
+            itemView.findViewById<AppCompatTextView>(R.id.tvDate)?.text = item.date
+            itemView.findViewById<AppCompatTextView>(R.id.tvDayOfWeek)
+                ?.setTextColor(Color.parseColor(item.textColor))
+            itemView.findViewById<AppCompatTextView>(R.id.tvDayOfWeek)?.text = item.dayOfWeek
             downloadImageUtil.getImage(
                 context.getString(
                     R.string.weather_icon_src,
                     InternetLinks.WEATHER_IMAGE_URL.link,
-                    dayForecast.weatherIcon
+                    item.weatherIcon
                 ),
-                weatherIcon
+                itemView.findViewById<AppCompatImageView>(R.id.ivWeather)
             )
+            itemView.findViewById<AppCompatTextView>(R.id.tvMaxTemp)?.text =
+                context.getString(
+                    R.string.temperature_in_Celsius,
+                    item.maxTemperature
+                )
+            itemView.findViewById<AppCompatTextView>(R.id.tvMinTemp)?.text =
+                context.getString(
+                    R.string.temperature_in_Celsius,
+                    item.maxTemperature
+                )
         }
-    }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherForWeekViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        val binding = ItemWeatherForDayBinding.inflate(
-            inflater,
-            parent,
-            false
-        )
-        return WeatherForWeekViewHolder(binding, parent.context, onClick)
-    }
+        private fun bindWeekendItem(item: WeekWeatherRecyclerModel.WeekendItem) {
+            currentIndex = item.index
+            itemView.findViewById<AppCompatTextView>(R.id.tvDate)?.text = item.date
+            itemView.findViewById<AppCompatTextView>(R.id.tvDayOfWeek)
+                ?.setTextColor(Color.parseColor(item.textColor))
+            itemView.findViewById<AppCompatTextView>(R.id.tvDayOfWeek)?.text = item.dayOfWeek
+            downloadImageUtil.getImage(
+                context.getString(
+                    R.string.weather_icon_src,
+                    InternetLinks.WEATHER_IMAGE_URL.link,
+                    item.weatherIcon
+                ),
+                itemView.findViewById<AppCompatImageView>(R.id.ivWeather)
+            )
+            itemView.findViewById<AppCompatTextView>(R.id.tvMaxTemp)?.text =
+                context.getString(
+                    R.string.temperature_in_Celsius,
+                    item.maxTemperature
+                )
+            itemView.findViewById<AppCompatTextView>(R.id.tvMinTemp)?.text =
+                context.getString(
+                    R.string.temperature_in_Celsius,
+                    item.maxTemperature
+                )
+        }
 
-    override fun getItemCount(): Int {
-        return forecastForWeek.size
-    }
+        private fun bindWeekdayItem(item: WeekWeatherRecyclerModel.WeekdayItem) {
+            currentIndex = item.index
+            itemView.findViewById<AppCompatTextView>(R.id.tvDate)?.text = item.date
+            itemView.findViewById<AppCompatTextView>(R.id.tvDayOfWeek)?.text = item.dayOfWeek
+            downloadImageUtil.getImage(
+                context.getString(
+                    R.string.weather_icon_src,
+                    InternetLinks.WEATHER_IMAGE_URL.link,
+                    item.weatherIcon
+                ),
+                itemView.findViewById<AppCompatImageView>(R.id.ivWeather)
+            )
+            itemView.findViewById<AppCompatTextView>(R.id.tvMaxTemp)?.text =
+                context.getString(
+                    R.string.temperature_in_Celsius,
+                    item.maxTemperature
+                )
+            itemView.findViewById<AppCompatTextView>(R.id.tvMinTemp)?.text =
+                context.getString(
+                    R.string.temperature_in_Celsius,
+                    item.maxTemperature
+                )
+        }
 
-    override fun onBindViewHolder(holder: WeatherForWeekViewHolder, position: Int) {
-        forecastForWeek[position].index = position
-        holder.bind(forecastForWeek[position])
+        fun bind(dataModel: WeekWeatherRecyclerModel) {
+            when (dataModel) {
+                is WeekWeatherRecyclerModel.TitleItem -> bindTitleItem(
+                    dataModel
+                )
+                is WeekWeatherRecyclerModel.WeekendItem -> bindWeekendItem(
+                    dataModel
+                )
+                is WeekWeatherRecyclerModel.WeekdayItem -> bindWeekdayItem(
+                    dataModel
+                )
+            }
+        }
     }
 }
