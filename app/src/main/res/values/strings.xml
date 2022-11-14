@@ -12,14 +12,12 @@
 
     <!-- Strings used for TodayWeatherFragment -->
     <string name="temperature_in_Celsius">%1$s°</string>
-    <string name="temperature_in_Celsius_with_Max_title">Max\n%1$s°</string>
-    <string name="temperature_in_Celsius_with_MIn_title">Min\n%1$s°</string>
     <string name="feels_like_temperature_in_Celsius">Feels like %1$s°</string>
     <string name="wind_speed_and_direction">%1$s m/s, %2$s</string>
     <string name="pressureInMM">%1$d mmHg</string>
-    <string name="humidityInPercents">%1$d\u0025</string>
+    <string name="humidityInPercents">%1$d%2$s</string>
     <string name="weather_icon_src">%1$s%2$s.svg</string>
-    <string name="hour">%1$d:00\n%2$s</string>
+    <string name="hour">%1$d:00</string>
     <string name="storage_location_denied">Location permission request was denied.</string>
     <string name="seven_day_forecast">7 day forecast</string>
     <string name="favorite">Favorite</string>
@@ -30,6 +28,8 @@
     <string name="evening_title">Evening</string>
     <string name="night_title">Night</string>
     <string name="feels_like_title">Feels like</string>
+    <string name="max">Max</string>
+    <string name="min">Min</string>
     !-- Strings used for FavoritesFragment -->
     <string name="favorites_title">Favorites</string>
     <string name="search">Search</string>

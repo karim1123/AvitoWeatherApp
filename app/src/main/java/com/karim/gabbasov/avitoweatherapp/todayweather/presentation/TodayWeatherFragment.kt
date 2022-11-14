@@ -22,9 +22,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.snackbar.Snackbar
 import com.karim.gabbasov.avitoweatherapp.R
 import com.karim.gabbasov.avitoweatherapp.databinding.FragmentTodayWeatherBinding
+import com.karim.gabbasov.avitoweatherapp.todayweather.data.mappers.HourlyWeatherRecyclerMapper.getTodayWeatherModel
+import com.karim.gabbasov.avitoweatherapp.todayweather.data.mappers.WeekWeatherRecyclerMapper.getWeekWeatherModel
 import com.karim.gabbasov.avitoweatherapp.todayweather.data.util.DownloadImageUtil
 import com.karim.gabbasov.avitoweatherapp.todayweather.data.util.InternetLinks
 import com.karim.gabbasov.avitoweatherapp.todayweather.domain.model.WeatherInfoModel
@@ -45,6 +48,7 @@ class TodayWeatherFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: TodayWeatherViewModel by activityViewModels()
     private val args: TodayWeatherFragmentArgs by navArgs()
+    lateinit var swipeRefresh: SwipeRefreshLayout
 
     @Inject
     lateinit var downloadImageUtil: DownloadImageUtil
@@ -109,6 +113,11 @@ class TodayWeatherFragment : Fragment() {
             viewLifecycleOwner,
             Lifecycle.State.RESUMED
         )
+        swipeRefresh = binding.swipeRefresh
+        swipeRefresh.setOnRefreshListener {
+            checkLocationPreview()
+            swipeRefresh.isRefreshing = false
+        }
     }
 
     override fun onDestroyView() {
@@ -156,14 +165,6 @@ class TodayWeatherFragment : Fragment() {
                 weatherCondition.replaceFirstChar {
                     if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
                 }
-            binding.tvWindSpeedAndDirection.text = getString(
-                R.string.wind_speed_and_direction,
-                windSpeed.toString(),
-                windDirection.uppercase()
-            )
-            binding.tvPressureInMM.text = getString(R.string.pressureInMM, pressureInMM)
-            binding.tvHumidityInPercents.text = "$humidity%"
-
             downloadImageUtil.getImage(
                 getString(
                     R.string.weather_icon_src,
@@ -173,22 +174,21 @@ class TodayWeatherFragment : Fragment() {
                 binding.ivWeather
             )
         }
-
         binding.tvCity.text = weatherInfoModel.locationModel.city
         if (!weatherInfoModel.locationModel.district.isNullOrBlank())
             binding.tvDistrict.text = weatherInfoModel.locationModel.district
 
         val hourlyWeatherRecyclerAdapter = HourlyWeatherAdapter(
-            weatherInfoModel.hourlyModelWeatherData,
+            getTodayWeatherModel(weatherInfoModel.hourlyModelWeatherData),
             downloadImageUtil
         )
         val hourlyWeatherRecyclerView = binding.hourlyWeatherRecycler
         hourlyWeatherRecyclerView.adapter = hourlyWeatherRecyclerAdapter
 
         val weekForecastRecyclerAdapter = WeatherForWeekAdapter(
-            weatherInfoModel.weatherForWeekModel.dayWeather,
+            getWeekWeatherModel(weatherInfoModel.weatherForWeekModel.dayWeather),
             downloadImageUtil
-        ) { forecastForWeek -> adapterOnClick(forecastForWeek.index) }
+        ) { dayIndex -> adapterOnClick(dayIndex) }
         val weekForecastRecyclerView = binding.forecastForWeekRecycler
         weekForecastRecyclerView.adapter = weekForecastRecyclerAdapter
     }
@@ -247,9 +247,6 @@ class TodayWeatherFragment : Fragment() {
 
     private fun setLoading() {
         binding.apply {
-            ivWindy.isVisible = false
-            ivPressure.isVisible = false
-            ivHumidity.isVisible = false
             tvForecastTitle.isVisible = false
             progressBar.isVisible = true
         }
@@ -257,9 +254,6 @@ class TodayWeatherFragment : Fragment() {
 
     private fun hideLoading() {
         binding.apply {
-            ivWindy.isVisible = true
-            ivPressure.isVisible = true
-            ivHumidity.isVisible = true
             tvForecastTitle.isVisible = true
             progressBar.isVisible = false
         }

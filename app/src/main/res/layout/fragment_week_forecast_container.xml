@@ -11,7 +11,9 @@
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:tabIndicatorColor="@color/red"
         app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/red"
         app:tabTextAppearance="@style/LowerTextAppearance" />
 
     <androidx.viewpager2.widget.ViewPager2
